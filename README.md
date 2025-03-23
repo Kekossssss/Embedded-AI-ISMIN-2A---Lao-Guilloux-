@@ -9,6 +9,7 @@ Ce projet fait partie du cursus de l'ISMIN en 2A et explore l'intégration de l'
    ```
 
 2. **Run script et entraînement du modèle**
+
    Dans le python, après avoir programmé la carte, exécutez la commande suivante 
    ```sh
    python Communication_STM32_Machine_Failure.py
