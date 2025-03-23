@@ -1,7 +1,7 @@
 import serial
 import numpy as np
 
-PORT = "COM5"
+PORT = "COM10"
 
 
 def synchronise_UART(serial_port):
@@ -50,7 +50,7 @@ def read_output_from_STM32(serial_port):
     Returns:
     A list of float values obtained by dividing each byte by 255.
     """
-    output = serial_port.read(10)
+    output = serial_port.read(5)
 
     float_values = [int(out)/255 for out in output]
     return float_values
@@ -81,8 +81,8 @@ def evaluate_model_on_STM32(iterations, serial_port):
 
 
 if __name__ == '__main__':
-    X_test = np.load(".\Documents\Cours\ISMIN_2A\Electif_IA_manufacturing\Embedded_IA\COLAB_IA_EMBARQUEE\Machine_Failure_X_test.npy")
-    Y_test = np.load(".\Documents\Cours\ISMIN_2A\Electif_IA_manufacturing\Embedded_IA\COLAB_IA_EMBARQUEE\Machine_Failure_Y_test.npy")
+    X_test = np.load("Machine_Failure_X_test.npy")
+    Y_test = np.load("Machine_Failure_Y_test.npy")
 
     with serial.Serial(PORT, 115200, timeout=1) as ser:
         print("Synchronising...")
@@ -90,4 +90,8 @@ if __name__ == '__main__':
         print("Synchronised")
 
         print("Evaluating model on STM32...")
-        error = evaluate_model_on_STM32(100, ser)
+        error = evaluate_model_on_STM32(len(Y_test), ser)
+        print("----------------------------------------")
+        print(f"Final accuracy : {error:.2f} ")
+        print("----------------------------------------")
+        ser.close()
