@@ -44,5 +44,6 @@ Ce projet fait partie du cursus de l'ISMIN en 2A et explore l'intégration de l'
    ```sh
    python Communication_STM32_Machine_Failure.py
    ```
+   Si vous voulez modifier le jeux de données, ou si vous avez modifier les noms de fichiers lors de l'étape 1, rendez-vous aux lignes 84 et 85 pour modifier les jeux de données de test respectivement d'entrée et de sortie du modèle.
    
    
